@@ -15,7 +15,7 @@ describe Weatherman::Response do
     @response.condition['code'].should ==  28
     @response.condition['temp'].should == 28
     @response.condition['text'].should == 'Mostly Cloudy'
-    @response.condition['date'].should == Date.parse('Sat, 13 Mar 2010 11:00 pm LST')
+    @response.condition['date'].should == Time.parse('Sat, 13 Mar 2010 6:00 pm LST')
   end
 
   it 'should provide the units used' do
@@ -97,9 +97,13 @@ DESCRIPTION
     image = @response.description_image
     image['src'].should == 'http://l.yimg.com/a/i/us/we/52/28.gif'
   end
+  
+  it "should provide the background image" do
+    image = @response.background_image
+    image.should == 'http://l.yimg.com/a/i/us/nws/weather/gr/28n.png'
+  end
 
   context 'using fahrenheiht as temperature unit' do
-
     it 'should return the temperature as fahrenheight' do
       client = Weatherman::Client.new :unit => 'F'
       response = client.lookup_by_woeid 455821
@@ -112,5 +116,4 @@ DESCRIPTION
       response.condition['temp'].should == 66
     end
   end
-
 end

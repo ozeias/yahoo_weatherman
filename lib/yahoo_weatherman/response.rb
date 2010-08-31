@@ -25,7 +25,7 @@ module Weatherman
     #
     def condition
       condition = item_attribute('yweather:condition')
-      translate! do_convertions(condition, [:code, :to_i], [:temp, :to_i], [:date, :to_date], :text)
+      translate! do_convertions(condition, [:code, :to_i], [:temp, :to_i], [:date, :to_time], :text)
     end
 
     # 
@@ -143,6 +143,13 @@ module Weatherman
     def description_image
       parsed_description.css('img').first # there's only one
     end
+    
+    #
+    # Display day or night background image
+    #
+    def background_image
+      "http://l.yimg.com/a/i/us/nws/weather/gr/#{gr_image_code}.png"
+    end
 
     #
     # A short HTML snippet (raw text) with a simple weather description.
@@ -188,12 +195,22 @@ module Weatherman
 
       def convert(value, method)
         return value unless method
-        method == :to_date ? Date.parse(value) : value.send(method)
+        method == :to_time ? Time.parse(value) : method == :to_date ? Date.parse(value) : value.send(method)
       end
 
       def translate!(attributes)
         @i18n.translate! attributes 
       end
+      
+      def gr_image_code
+        condition['code'].to_s << daynight
+      end
+      
+      def daynight
+        tpb = condition['date']
+        tsr = Time.parse(astronomy['sunrise'])
+        tss = Time.parse(astronomy['sunset'])
+        tpb > tsr && tpb < tss ? 'd' : 'n'
+      end
   end
 end
-
