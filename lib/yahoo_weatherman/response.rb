@@ -201,13 +201,13 @@ module Weatherman
       def translate!(attributes)
         @i18n.translate! attributes 
       end
-      
+
       def gr_image_code
         condition['code'].to_s << daynight
       end
-      
+
       def daynight
-        tpb = condition['date']
+        tpb = Time.parse(condition['date'].strftime("%H:%M:%S"))
         tsr = Time.parse(astronomy['sunrise'])
         tss = Time.parse(astronomy['sunset'])
         tpb > tsr && tpb < tss ? 'd' : 'n'
