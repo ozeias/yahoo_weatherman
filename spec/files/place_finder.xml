@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResultSet version="1.0"><Error>0</Error><ErrorMessage>No error</ErrorMessage><Locale>us_US</Locale><Quality>40</Quality><Found>1</Found><Result><quality>40</quality><latitude>-27.090910</latitude><longitude>-48.612358</longitude><offsetlat>-27.090910</offsetlat><offsetlon>-48.612358</offsetlon><radius>1200</radius><name></name><line1></line1><line2>88220 Itapema</line2><line3></line3><line4>Brazil</line4><house></house><street></street><xstreet></xstreet><unittype></unittype><unit></unit><postal>88220</postal><neighborhood></neighborhood><city>Itapema</city><county>Itapema</county><state>Santa Catarina</state><country>Brazil</country><countrycode>BR</countrycode><statecode>SC</statecode><countycode></countycode><uzip>88220</uzip><hash></hash><woeid>436043</woeid><woetype>7</woetype></Result></ResultSet>
+
+<!-- gws30.maps.re3.yahoo.com uncompressed/chunked Wed Oct 13 18:23:08 PDT 2010 -->

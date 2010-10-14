@@ -16,9 +16,15 @@ def fahrenheight_fixture
   File.read filepath
 end
 
+def place_finder
+  filepath = File.expand_path(File.join([File.dirname(__FILE__),  "files", "place_finder.xml"]))
+  File.read filepath
+end
+
 FakeWeb.allow_net_connect = false
 FakeWeb.register_uri(:get, "http://weather.yahooapis.com/forecastrss?w=455821&u=c", :body => celsius_fixture)
 FakeWeb.register_uri(:get, "http://weather.yahooapis.com/forecastrss?w=455821&u=f", :body => fahrenheight_fixture)
+FakeWeb.register_uri(:get, "http://where.yahooapis.com/geocode?location=Itapema,+SC&appid=YahooDemo", :body => place_finder)
 
 module YAML
   class << self

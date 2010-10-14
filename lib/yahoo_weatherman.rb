@@ -10,12 +10,14 @@ require 'nokogiri'
 require 'yahoo_weatherman/i18n'
 require 'yahoo_weatherman/image'
 require 'yahoo_weatherman/response'
+require 'yahoo_weatherman/where'
 
 module Weatherman
-  
-  VERSION = '1.0.3'
 
-  URI = 'http://weather.yahooapis.com/forecastrss'
+  VERSION   = '1.0.3'
+  URL       = 'http://weather.yahooapis.com/forecastrss'
+  APPID     = 'YahooDemo'
+  WHERE_URL = 'http://where.yahooapis.com/geocode'
 
   # = Client
   #
@@ -37,9 +39,10 @@ module Weatherman
     #
     def initialize(options = {})
       @options = options
-      @uri = options[:url] || URI
+      @url = options[:url] || URL
+      @appid = options[:appid] || APPID
     end
-    
+
     #
     # Just pass in a +woeid+ and it will return a Weatherman::Response object:w
     #
@@ -48,9 +51,18 @@ module Weatherman
       Response.new(raw, options[:lang])
     end
 
+    def lookup_by_city_and_state(city, state)
+      raw = get request_place_finder(city, state)
+      Where.new(raw, options[:lang])
+    end
+
     private
       def request_url(woeid)
-        @uri + query_string(woeid)
+        @url + query_string(woeid)
+      end
+
+      def request_place_finder(city, state)
+        WHERE_URL + '?location='+ URI.escape("#{city},+#{state}") + '&appid=' + URI.escape(@appid)
       end
 
       def query_string(woeid)

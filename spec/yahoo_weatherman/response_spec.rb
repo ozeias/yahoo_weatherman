@@ -100,7 +100,7 @@ DESCRIPTION
   
   it "should provide the background image" do
     image = @response.background_image
-    image.should == 'http://l.yimg.com/a/i/us/nws/weather/gr/28n.png'
+    image.should == 'http://l.yimg.com/a/i/us/nws/weather/gr/28d.png'
   end
 
   context 'using fahrenheiht as temperature unit' do
