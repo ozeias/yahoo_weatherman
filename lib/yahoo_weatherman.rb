@@ -14,7 +14,7 @@ require 'yahoo_weatherman/where'
 
 module Weatherman
 
-  VERSION   = '1.0.3'
+  VERSION   = '1.1.2'
   URL       = 'http://weather.yahooapis.com/forecastrss'
   APPID     = 'YahooDemo'
   WHERE_URL = 'http://where.yahooapis.com/geocode'

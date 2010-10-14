@@ -97,7 +97,7 @@ DESCRIPTION
     image = @response.description_image
     image['src'].should == 'http://l.yimg.com/a/i/us/we/52/28.gif'
   end
-  
+
   it "should provide the background image" do
     image = @response.background_image
     image.should == 'http://l.yimg.com/a/i/us/nws/weather/gr/28d.png'
